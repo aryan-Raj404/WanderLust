@@ -1,0 +1,103 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.conatiner {
+    flex: 1;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.navbar-brand {
+    color: rgb(214, 84, 84) !important;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+.navbar i {
+    color: rgb(214, 84, 84);
+    font-size: 2.5rem;
+}
+
+.navbar-collapse {
+    background-color: white;
+}
+
+.f-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    background-color: rgb(192, 192, 192);
+    height: 10rem;
+    justify-content: center;
+}
+
+.f-info i {
+    font-size: 1.4rem;
+    margin-right: 1rem;
+}
+
+.f-info-links a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.row {
+    padding: 1rem;
+}
+
+.cardList {
+    border: none !important;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.cardList:hover {
+    opacity: 0.85;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+.add-btn {
+    background-color: rgb(214, 84, 84) !important;
+    border: none !important;
+}
+
+.btns {
+    width: 100%;
+    padding-inline: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#map {
+    height: 500px;
+    width: 50vw;
+}
