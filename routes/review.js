@@ -11,15 +11,14 @@ const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware.js
 // Show all reviews for a listing
 router.post("/",isLoggedIn,validateReview, wrapAsync(async (req, res) => {
   let listing = await Listing.findById(req.params.id);
-  console.log(listing);
 
   let newReview = new Review(req.body.review);
   newReview.author = req.user._id; // Assuming req.user is populated with the logged-in user
 
-  console.log(newReview);
+  // debug logs removed
 
   listing.reviews.push(newReview);
-  console.log(listing.reviews)
+  // debug logs removed
   await newReview.save();
   await listing.save();
 

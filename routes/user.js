@@ -37,7 +37,7 @@ router.post("/login",saveRedirectUrl,passport.authenticate("local",{failureRedir
     req.flash("success",`Welcome back ${req.user.username}`);
     let redirectUrl = res.locals.redirectUrl || "/listing";
     delete res.locals.redirectUrl; // Clear the redirect URL after use
-    console.log(redirectUrl);
+    // debug logs removed
     res.redirect(redirectUrl);
 })
 

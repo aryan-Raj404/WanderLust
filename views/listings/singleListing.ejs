@@ -2,9 +2,15 @@
 <body>
   <script>
     const mapApi = "<%= process.env.MAP %>";
-    const lon = "<%- JSON.stringify(listing.geometry[0]) %>";
-    const lat = "<%- JSON.stringify(listing.geometry[1]) %>";
-    console.log(lon, lat, mapApi);
+    let lon = null;
+    let lat = null;
+    let showMap = false;
+    <% if (listing.geometry && listing.geometry.length >= 2) { %>
+      lon = <%- JSON.stringify(listing.geometry[0]) %>;
+      lat = <%- JSON.stringify(listing.geometry[1]) %>;
+      showMap = true;
+    <% } %>
+    // debug logs removed
   </script>
   <h2 class="mt-3 offset-3"><%= listing.title %></h2>
   <div class="card col-8 mb-4 offset-3" style="width: 35rem; border: none">

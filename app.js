@@ -37,7 +37,7 @@ const store = MongoStore.create({
 })
 
 store.on("error", function(e) {
-  console.log("Session Store Error", e);
+  console.error("Session Store Error", e);
 });
 
 const sessionOptions = {
@@ -81,10 +81,10 @@ async function main() {
 
 main()
   .then(() => {
-    console.log("DB Connected");
+    // DB connected
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });//Connecting to MongoDB
 
 // Listings Routes
@@ -115,5 +115,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log("Server connected to port no. ", port);
+  // server started
 });
