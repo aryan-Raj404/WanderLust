@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
@@ -17,7 +17,7 @@ const localStrategy = require("passport-local");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -29,28 +29,28 @@ app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
 
 const store = MongoStore.create({
-  mongoUrl : process.env.ATLASDB,
+  mongoUrl: process.env.ATLASDB,
   touchAfter: 24 * 3600, // time in seconds
-  crypto:{
-    secret : "monkeydluffy"
-  }
-})
+  crypto: {
+    secret: "monkeydluffy",
+  },
+});
 
-store.on("error", function(e) {
+store.on("error", function (e) {
   console.error("Session Store Error", e);
 });
 
 const sessionOptions = {
   store,
-  secret : "monkeydluffy",
+  secret: "monkeydluffy",
   resave: false,
   saveUninitialized: true,
-  cookie : {
+  cookie: {
     httpOnly: true,
     // secure: true, // Uncomment this line if using HTTPS
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 7 days
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-  }
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+  },
 };
 
 app.use(session(sessionOptions));
@@ -69,7 +69,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Connecting to MongoDB
 // const MONGO_URL = process.env.ATLASDB;
 const dbUrl = process.env.ATLASDB;
@@ -85,7 +84,7 @@ main()
   })
   .catch((err) => {
     console.error(err);
-  });//Connecting to MongoDB
+  }); //Connecting to MongoDB
 
 // Listings Routes
 app.use("/listing", listingRouter);
@@ -93,9 +92,9 @@ app.use("/listing", listingRouter);
 // Reviews Routes
 app.use("/listing/:id/reviews", reviewRouter);
 
-app.get("/privacy",(req,res)=>{
-  res.render("footer/privacy")
-})
+app.get("/privacy", (req, res) => {
+  res.render("footer/privacy");
+});
 
 app.get("/terms", (req, res) => {
   res.render("footer/terms");
@@ -103,7 +102,6 @@ app.get("/terms", (req, res) => {
 
 // User Routes
 app.use("/", userRouter);
-
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not Found!"));

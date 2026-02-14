@@ -35,7 +35,10 @@ router.get(
       return res.redirect("/listing");
     }
     let originalUrl = listing.image.url;
-    originalUrl = originalUrl.replace("/upload", "/upload/w_300,c_fill,e_blur:300");
+    originalUrl = originalUrl.replace(
+      "/upload",
+      "/upload/w_300,c_fill,e_blur:300",
+    );
     res.render("listings/edit", { listing, originalUrl });
   }),
 );
@@ -68,7 +71,7 @@ router.get(
     if (!listing.geometry || listing.geometry.length < 2) {
       const location = listing.location || "";
       if (location) {
-          try {
+        try {
           // debug log removed
           // Try OpenCage first (uses MAP_API_KEY env var)
           const openCageKey = process.env.MAP_API_KEY;
@@ -127,7 +130,7 @@ router.get(
             }
           }
 
-            if (coords) {
+          if (coords) {
             listing.geometry = [coords.lng, coords.lat];
             await listing.save();
           } else {
